@@ -1,0 +1,769 @@
+<!-- templates/index.html - Updated with Image Logo -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>NEX GEN SOFTWARES | Software & IoT Solutions</title>
+    <!-- Font Awesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #0f1235 50%, #1a1f4e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(48, 79, 254, 0.4);
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+            25% { transform: translateY(-50px) translateX(30px); opacity: 0.7; }
+            50% { transform: translateY(-20px) translateX(-30px); opacity: 0.5; }
+            75% { transform: translateY(30px) translateX(20px); opacity: 0.8; }
+        }
+
+        /* Glow Effects */
+        .glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(48,79,254,0.15) 0%, rgba(48,79,254,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .glow-1 { top: -200px; right: -200px; animation: pulse 8s infinite; }
+        .glow-2 { bottom: -200px; left: -200px; animation: pulse 10s infinite reverse; }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        /* Main Content */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 60px;
+            margin: 20px;
+            border: 1px solid rgba(48, 79, 254, 0.3);
+            animation: slideDown 0.8s ease;
+            flex-wrap: wrap;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Logo Styling with Image */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a237e, #304ffe, #7c4dff);
+            box-shadow: 0 0 25px rgba(48, 79, 254, 0.6);
+            animation: logoGlow 3s infinite alternate;
+            padding: 8px;
+        }
+
+        .logo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        @keyframes logoGlow {
+            from { box-shadow: 0 0 20px rgba(48, 79, 254, 0.5); transform: scale(1); }
+            to { box-shadow: 0 0 45px rgba(124, 77, 255, 0.8); transform: scale(1.02); }
+        }
+
+        .logo-text h1 {
+            font-size: 26px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #7c4dff, #304ffe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .logo-text p {
+            font-size: 11px;
+            color: #8892b0;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #ccd6f6;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: all 0.3s;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 30px;
+        }
+
+        .nav-links a:hover {
+            color: #304ffe;
+            background: rgba(48, 79, 254, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 100px 20px 80px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .hero h1 {
+            font-size: 58px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #7c4dff, #304ffe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #a8b2d1;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 20px 30px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            color: #304ffe;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #8892b0;
+        }
+
+        /* Services Grid */
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            margin: 80px 0 50px;
+            background: linear-gradient(135deg, #fff, #304ffe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #304ffe, #7c4dff);
+            border-radius: 3px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            padding: 20px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(48, 79, 254, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(48, 79, 254, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            border-color: #304ffe;
+            box-shadow: 0 25px 45px rgba(48, 79, 254, 0.25);
+        }
+
+        .service-icon {
+            font-size: 55px;
+            color: #304ffe;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .service-card h3 {
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: #a8b2d1;
+            line-height: 1.7;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            color: #ccd6f6;
+            font-size: 14px;
+        }
+
+        .feature-list li i {
+            color: #304ffe;
+            margin-right: 10px;
+        }
+
+        /* Form Section */
+        .form-container {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            border-radius: 35px;
+            padding: 50px;
+            margin: 80px 20px;
+            border: 1px solid rgba(48, 79, 254, 0.3);
+            transition: all 0.5s;
+        }
+
+        .form-container:hover {
+            box-shadow: 0 0 50px rgba(48, 79, 254, 0.15);
+            border-color: rgba(48, 79, 254, 0.6);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: #ccd6f6;
+        }
+
+        .form-group label .required {
+            color: #ff4444;
+        }
+
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(10, 14, 39, 0.8);
+            border: 1px solid rgba(48, 79, 254, 0.3);
+            border-radius: 15px;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
+            font-size: 15px;
+        }
+
+        .form-group input:focus, 
+        .form-group select:focus, 
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #304ffe;
+            box-shadow: 0 0 20px rgba(48, 79, 254, 0.2);
+            background: rgba(10, 14, 39, 0.95);
+        }
+
+        .form-group textarea {
+            min-height: 180px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #304ffe, #7c4dff);
+            color: white;
+            padding: 16px 45px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(48, 79, 254, 0.5);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            margin-top: 60px;
+            border-top: 1px solid rgba(48, 79, 254, 0.2);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+        }
+
+        .contact-item i {
+            font-size: 22px;
+            color: #304ffe;
+        }
+
+        .contact-item a {
+            color: #ccd6f6;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: #304ffe;
+        }
+
+        .social-links {
+            margin: 25px 0;
+        }
+
+        .social-links a {
+            color: #8892b0;
+            font-size: 24px;
+            margin: 0 15px;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #304ffe;
+            transform: translateY(-3px);
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #1f2937;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            z-index: 1000;
+            animation: slideInRight 0.3s ease;
+            border-left: 4px solid #304ffe;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .toast.success { border-left-color: #10b981; }
+        .toast.error { border-left-color: #ef4444; }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hero h1 { font-size: 36px; }
+            .section-title { font-size: 32px; }
+            .form-row { grid-template-columns: 1fr; }
+            .form-container { padding: 30px 20px; }
+            .contact-info { gap: 20px; flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="particles" id="particles"></div>
+<div class="glow glow-1"></div>
+<div class="glow glow-2"></div>
+
+<div class="container">
+    <nav>
+        <div class="logo">
+            <div class="logo-img">
+                <img src="{{ url_for('static', filename='images/nexgenlogo.png') }}" alt="NEX GEN SOFTWARES Logo" class="logo-image">
+            </div>
+            <div class="logo-text">
+                <h1>NEX GEN SOFTWARES</h1>
+                <p>INNOVATING TOMORROW'S TECHNOLOGY</p>
+            </div>
+        </div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1 data-aos="fade-up">Software & Embedded IoT Solutions</h1>
+        <p data-aos="fade-up" data-aos-delay="200">Empowering businesses with cutting-edge software development, embedded systems, and IoT innovations that drive the future.</p>
+        <div class="hero-stats" data-aos="fade-up" data-aos-delay="300">
+            <div class="stat">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Projects Delivered</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">90+</div>
+                <div class="stat-label">Happy Clients</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">2+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2 class="section-title" data-aos="fade-right">Our Expertise</h2>
+        <div class="services-grid">
+            <div class="service-card" data-aos="flip-left">
+                <i class="fas fa-code service-icon"></i>
+                <h3>Software Products</h3>
+                <p>Custom enterprise software, cloud solutions, mobile apps, and scalable web applications tailored to your business needs.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Enterprise Resource Planning</li>
+                    <li><i class="fas fa-check-circle"></i> Cloud & SaaS Platforms</li>
+                    <li><i class="fas fa-check-circle"></i> Mobile & Web Applications</li>
+                </ul>
+            </div>
+            <div class="service-card" data-aos="flip-left" data-aos-delay="100">
+                <i class="fas fa-microchip service-icon"></i>
+                <h3>Embedded Systems</h3>
+                <p>Firmware development, RTOS integration, driver development, and hardware-software co-design for embedded devices.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Firmware Development</li>
+                    <li><i class="fas fa-check-circle"></i> RTOS Integration</li>
+                    <li><i class="fas fa-check-circle"></i> Device Driver Development</li>
+                </ul>
+            </div>
+            <div class="service-card" data-aos="flip-left" data-aos-delay="200">
+                <i class="fas fa-wifi service-icon"></i>
+                <h3>IoT Products & Services</h3>
+                <p>End-to-end IoT solutions including sensor networks, cloud connectivity, real-time analytics, and smart device ecosystems.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Smart Sensor Networks</li>
+                    <li><i class="fas fa-check-circle"></i> IoT Cloud Platforms</li>
+                    <li><i class="fas fa-check-circle"></i> Edge Computing Solutions</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="form-container" data-aos="zoom-in">
+        <h2 style="text-align: center; margin-bottom: 20px; font-size: 36px;">Submit Your Project Specifications</h2>
+        <p style="text-align: center; margin-bottom: 40px; color: #a8b2d1;">Describe your project in detail, and our team will get back to you within 24 hours.</p>
+        
+        <form id="projectForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Full Name <span class="required">*</span></label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address <span class="required">*</span></label>
+                    <input type="email" name="email" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Phone Number <span class="required">*</span></label>
+                    <input type="tel" name="phone" placeholder="+91 00000 00000" required>
+                </div>
+                <div class="form-group">
+                    <label>Company (Optional)</label>
+                    <input type="text" name="company">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Project Type <span class="required">*</span></label>
+                    <select name="project_type" required>
+                        <option value="">Select project type</option>
+                        <option value="Software Development">Software Development</option>
+                        <option value="Embedded Systems">Embedded Systems</option>
+                        <option value="IoT Solutions">IoT Solutions</option>
+                        <option value="Full Stack Development">Full Stack Development</option>
+                        <option value="Mobile App">Mobile App Development</option>
+                        <option value="Consulting">Technical Consulting</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Project Title <span class="required">*</span></label>
+                    <input type="text" name="title" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Budget Range</label>
+                    <select name="budget">
+                        <option value="">Select budget range</option>
+                        <option value="₹5,000 - ₹10,000">₹5,000 - ₹10,000</option>
+                        <option value="₹10,000 - ₹25,000">₹10,000 - ₹25,000</option>
+                        <option value="₹25,000 - ₹50,000">₹25,000 - ₹50,000</option>
+                        <option value="₹50,000 - ₹100,000">₹50,000 - ₹100,000</option>
+                        <option value="₹100,000+">₹100,000+</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Expected Timeline</label>
+                    <select name="timeline">
+                        <option value="">Select timeline</option>
+                        <option value="1-2 months">1-2 months</option>
+                        <option value="3-4 months">3-4 months</option>
+                        <option value="5-6 months">5-6 months</option>
+                        <option value="6+ months">6+ months</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Detailed Project Specifications <span class="required">*</span></label>
+                <textarea name="specifications" placeholder="Please describe your project in detail: features, requirements, target devices, technical constraints, etc..." required></textarea>
+            </div>
+            <button type="submit" class="submit-btn" id="submitBtn">
+                <i class="fas fa-paper-plane"></i> Send Specification
+            </button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:hr.nexgensoftwares@gmail.com">hr.nexgensoftwares@gmail.com</a>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Ondipudur, Coimbatore, Tamil Nadu, India.</span>
+            </div>
+        </div>
+        <p>2024 NEX GEN SOFTWARES. Innovating the future with Software & IoT.</p>
+    </footer>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100
+    });
+
+    // Particle generation
+    function createParticles() {
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            const size = Math.random() * 6 + 2;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 20 + 10) + 's';
+            particle.style.animationDelay = (Math.random() * 5) + 's';
+            particlesContainer.appendChild(particle);
+        }
+    }
+    createParticles();
+
+    // Form submission
+    const form = document.getElementById('projectForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function showToast(message, type = 'success') {
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i> ${message}`;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 5000);
+    }
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Validate required fields
+        const name = form.querySelector('[name="name"]').value.trim();
+        const email = form.querySelector('[name="email"]').value.trim();
+        const phone = form.querySelector('[name="phone"]').value.trim();
+        const specifications = form.querySelector('[name="specifications"]').value.trim();
+        
+        if (!name || !email || !phone || !specifications) {
+            showToast('Please fill in all required fields (*)', 'error');
+            return;
+        }
+        
+        if (!email.includes('@')) {
+            showToast('Please enter a valid email address', 'error');
+            return;
+        }
+        
+        if (!phone.match(/[\d+]{8,}/)) {
+            showToast('Please enter a valid phone number', 'error');
+            return;
+        }
+        
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        
+        const formData = new FormData(form);
+        
+        try {
+            const response = await fetch('/submit-project', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                showToast(result.message, 'success');
+                form.reset();
+            } else {
+                showToast(result.message || 'Failed to submit. Please try again.', 'error');
+            }
+        } catch (error) {
+            showToast('Network error. Please check your connection.', 'error');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Specification';
+        }
+    });
+</script>
+</body>
+</html>
